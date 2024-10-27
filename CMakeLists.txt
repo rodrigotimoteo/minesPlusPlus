@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
-project(minas)
+project(minesweeper)
 
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -26,8 +26,12 @@ endif()
 
 set(SOURCES
     src/main.cpp 
-    src/gfx/window.hpp 
-    src/gfx/window.cpp
+    src/core/game.hpp
+    src/core/game.cpp
+    src/ui/window.hpp 
+    src/ui/window.cpp
+    src/ui/cli.hpp
+    src/ui/cli.cpp
 )
 add_executable(${PROJECT_NAME} ${SOURCES})
 #set(raylib_VERBOSE 1)

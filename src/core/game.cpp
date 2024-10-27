@@ -3,12 +3,14 @@
 #include <cstdlib>
 #include <vector>
 
+#include "../core/game.hpp"
+
 bool Coord2D::operator!=(Coord2D coord) {
     return this->x != coord.x && this->y != coord.y;
 }
 
 Level::Level(unsigned int width, unsigned int height, unsigned bombs) : bombs(bombs) { 
-    assert(width * height < bombs / 2);
+    assert(width * height > bombs / 2);
     assert(width > 5 && height > 5);
 
     board.reserve(10);
