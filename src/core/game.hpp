@@ -17,7 +17,9 @@ struct Coord2D {
 
 class Level {
 private:
-    std::vector<std::vector<bool>> board;
+    std::vector<std::vector<char>> board;
+
+    bool initialized = false;
     unsigned int bombs;
 
 public:
@@ -33,7 +35,23 @@ public:
     void initBoard(Coord2D coord);
 
     /**
+     * Makes a play on the board if no play has been done yet (initialized = false)
+     * initializes the board
+     **/
+    void play(Coord2D coord);
+
+    /**
      * Gets the val of the given coordinate (true if bomb false otherwise)
      **/
     bool getCell(Coord2D coord);
+
+    /**
+     * Gets the Width of the Board
+     **/ 
+    unsigned int getWidth();
+
+    /**
+     * Gets the Height of the Board
+     **/  
+    unsigned int getHeight();
 };

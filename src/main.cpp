@@ -2,6 +2,6 @@
 #include "ui/cli.hpp"
 
 int main() {    
-    gameLoop();
+    menuLoop();
 }
 
