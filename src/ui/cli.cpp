@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ostream>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -78,17 +79,23 @@ void menuLoop() {
     gameLoop(width, height, bombs);
 }
 
-bool checkInputs(std::vector<std::string> vector, int width, int height) {
+bool checkInputs(std::vector<std::string>& vector, int width, int height) {
     if(vector.size() != 3) {
+        std::cout << "vector check";
         return false; 
     }
-    if(!vector[0].empty() && (vector[0] != std::string("p") || vector[0] != std::string("f"))) {
+    if(vector[0].length() == 0) {
+        std::cout << "string check";
         return false;
     }
 
     //Lacks int values checks
 
     return true;
+}
+
+void flushCin() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  
 }
 
 void gameLoop(int width, int height, int bombs) {
@@ -108,6 +115,7 @@ void gameLoop(int width, int height, int bombs) {
 
     while(gameRunning != 0) {
         std::cout << "Input: ";
+
         std::getline(std::cin, play);
         std::stringstream ss(play);
        
@@ -117,8 +125,6 @@ void gameLoop(int width, int height, int bombs) {
         while(ss >> temp) {
             tempVector.push_back(temp);
         }
-
-        std::cout << tempVector.size();
 
         if(!checkInputs(tempVector, level.getWidth(), level.getHeight())) {
             std::cout << "Invalid command!\n";
@@ -131,7 +137,7 @@ void gameLoop(int width, int height, int bombs) {
 
         Coord2D coord;
         coord.x = x, coord.y = y;
-        level.play(coord);
+        level.play(coord, playType);
     }
 
 }
